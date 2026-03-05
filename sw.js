@@ -1,10 +1,12 @@
-const CACHE_NAME = 'brasal-1502-v2.1';
+const CACHE_NAME = 'brasal-1502-v2.2';
 const ASSETS = [
     './index.html',
     './app.js',
     './components.js',
     './db.js',
     './manifest.json',
+    './icon-192.png',
+    './icon-512.png',
     'https://cdn.tailwindcss.com',
     'https://unpkg.com/lucide@latest'
 ];

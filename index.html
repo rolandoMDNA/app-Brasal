@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Brasal 1502 | Logística Panadería</title>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- SortableJS for Drag and Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ruta1: '#3b82f6', // Azul
+                        ruta2: '#10b981', // Verde
+                        gestion: '#f59e0b', // Ambar
+                        analisis: '#8b5cf6', // Violeta
+                    },
+                    spacing: {
+                        'touch': '60px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-slate-50 text-slate-900 font-sans antialiased select-none touch-manipulation;
+            }
+            button {
+                @apply active:scale-95 transition-transform;
+            }
+        }
+        @layer components {
+            .btn-touch {
+                @apply min-h-[60px] flex items-center justify-center gap-3 px-6 rounded-xl font-semibold shadow-sm text-lg w-full;
+            }
+            .card-touch {
+                @apply p-6 rounded-2xl shadow-md flex flex-col items-center justify-center gap-4 text-white text-center h-40;
+            }
+            .glass {
+                @apply bg-white/80 backdrop-blur-md border border-white/20;
+            }
+        }
+        /* Prevents browser-native zoom on input focus for iOS */
+        input { font-size: 18px !important; }
+
+        /* Toast Animations */
+        #toast-container {
+            @apply fixed top-6 left-1/2 -translate-x-1/2 z-[100] flex flex-col items-center gap-2 w-full max-w-[320px] pointer-events-none;
+        }
+        .toast {
+            @apply bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-[-20px] opacity-0 pointer-events-auto;
+        }
+        .toast.show {
+            @apply translate-y-0 opacity-100;
+        }
+        .toast-success { @apply bg-emerald-600; }
+        .toast-error { @apply bg-red-600; }
+        .toast-info { @apply bg-blue-600; }
+    </style>
+</head>
+
+<body class="flex justify-center min-h-screen">
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+    <!-- Main Container -->
+    <main id="app"
+        class="w-full max-w-md bg-white shadow-xl min-h-screen flex flex-col relative overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+        <!-- Global Navigation Fixed -->
+        <div id="nav-container"
+            class="sticky top-0 z-40 transition-all duration-300 transform -translate-y-full opacity-0">
+            <!-- Injected by app.js -->
+        </div>
+
+        <!-- Content injected by app.js -->
+        <div id="view-container" class="flex-1 overflow-y-auto px-4 py-6">
+            <div class="flex items-center justify-center h-full">
+                <p class="text-slate-400 animate-pulse">Cargando sistema...</p>
+            </div>
+        </div>
+
+        <!-- Safe Area Padding at bottom -->
+        <div class="h-20 w-full pointer-events-none"></div>
+    </main>
+
+    <!-- Modals Overlay -->
+    <div id="modal-container" class="fixed inset-0 z-50 pointer-events-none flex items-center justify-center px-4">
+        <!-- Modals injected here -->
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="db.js"></script>
+    <script type="module" src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW Registered'))
+                    .catch(err => console.log('SW Error', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

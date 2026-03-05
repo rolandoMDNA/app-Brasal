@@ -165,10 +165,24 @@ window.navigate = (view, data = {}, isBack = false) => {
         state.historyStack.push({ view: state.currentView, data: state.viewData });
     }
 
+    const leavingHome = state.currentView === 'home' && view !== 'home';
+    const returningHome = state.currentView !== 'home' && view === 'home';
+
     state.currentView = view;
     state.viewData = data;
     render();
     window.scrollTo(0, 0);
+
+    // Integramos el Gesto de Retroceso de Android (History API Trap)
+    if (leavingHome) {
+        // Al salir del menú principal, forzamos un estado en el navegador para atrapar el swipe
+        history.pushState({ appNav: true }, '');
+    } else if (returningHome) {
+        // Al volver al menú principal (internamente), limpiamos el estado silenciosamente
+        window.__ignoringPopstate = true;
+        history.back();
+        setTimeout(() => window.__ignoringPopstate = false, 100);
+    }
 };
 
 window.goBack = () => {
@@ -884,3 +898,18 @@ window.state = state;
 
 // Initial render
 render();
+
+// --- ANDROID HARDWARE BACK GESTURE INTEGRATION ---
+window.addEventListener('popstate', (e) => {
+    // Si la limpieza del estado fue iniciada por nuestra propia navegación, ignoramos el evento
+    if (window.__ignoringPopstate) return;
+
+    // Si el usuario desliza hacia atrás y NO está en la pantalla principal (Home):
+    if (state.currentView !== 'home') {
+        // 1. Evitamos que el navegador salga de la app "re-atrapando" el historial
+        history.pushState({ appNav: true }, '');
+
+        // 2. Disparamos la lógica de retroceso de nuestra propia interfaz
+        window.goBack();
+    }
+});

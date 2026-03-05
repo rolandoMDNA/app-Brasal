@@ -665,16 +665,16 @@ function render() {
         case 'products':
             html = `
                 <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-white">Seleccionar Pan</h2>
-                    <p class="text-slate-400">${viewData.client}</p>
+                    <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Seleccionar Pan</h2>
+                    <p class="text-slate-500 dark:text-slate-400">${viewData.client}</p>
                 </div>
                 <div class="grid grid-cols-2 gap-3 mb-20">
                     ${state.products.map(p => `
-                        <button onclick="selectProduct('${p}', '${viewData.type}', '${viewData.client}', ${viewData.routeId})" class="h-24 bg-slate-800 border border-slate-600 rounded-2xl flex items-center justify-center text-lg font-bold text-slate-200 shadow-sm active:bg-blue-50 active:border-blue-200 p-2 text-center leading-tight">
+                        <button onclick="selectProduct('${p}', '${viewData.type}', '${viewData.client}', ${viewData.routeId})" class="h-24 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl flex items-center justify-center text-lg font-bold text-slate-700 dark:text-slate-200 shadow-sm active:bg-blue-50 active:border-blue-200 p-2 text-center leading-tight">
                             ${p}
                         </button>
                     `).join('')}
-                    <button onclick="addCustomProduct()" class="h-24 bg-slate-900 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 shadow-sm active:bg-slate-100 p-2 text-center gap-1">
+                    <button onclick="addCustomProduct()" class="h-24 bg-slate-50 dark:bg-slate-900 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 shadow-sm active:bg-slate-100 p-2 text-center gap-1">
                         <i data-lucide="plus-circle" class="w-6 h-6"></i>
                         <span class="text-sm font-bold">Otro...</span>
                     </button>
@@ -698,20 +698,20 @@ function render() {
                     <div class="inline-flex p-4 bg-emerald-100 text-emerald-600 rounded-full mb-6">
                         ${Comp.Icons.Check}
                     </div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Resumen del Pedido</h2>
-                    <div class="bg-slate-900 rounded-2xl p-4 mb-8 text-left max-w-xs mx-auto">
+                    <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Resumen del Pedido</h2>
+                    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 mb-8 text-left max-w-xs mx-auto">
                         ${state.tempItems.map(item => `
-                            <div class="flex justify-between border-b border-slate-600 py-2 last:border-0">
-                                <span class="text-slate-200 font-medium">${item.product}</span>
+                            <div class="flex justify-between border-b border-slate-200 dark:border-slate-600 py-2 last:border-0">
+                                <span class="text-slate-700 dark:text-slate-200 font-medium">${item.product}</span>
                                 <span class="font-bold">${item.value} uds</span>
                             </div>
                         `).join('')}
                     </div>
                     
-                    <h3 class="text-lg font-bold text-slate-200 mb-4 border-t border-slate-100 pt-6">¿Para cuándo?</h3>
+                    <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 mb-4 border-t border-slate-100 pt-6">¿Para cuándo?</h3>
                     <div class="flex flex-col gap-3">
                         <button onclick="confirmOrderDate(1)" class="btn-touch bg-emerald-600 text-white text-xl h-24 shadow-md font-bold">MAÑANA</button>
-                        <button onclick="const el = document.getElementById('cal'); if(el.showPicker) el.showPicker(); else el.click();" class="btn-touch bg-slate-800 border border-slate-600 text-slate-200 shadow-sm">
+                        <button onclick="const el = document.getElementById('cal'); if(el.showPicker) el.showPicker(); else el.click();" class="btn-touch bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 shadow-sm">
                             ${Comp.Icons.Calendar}
                             <span>CALENDARIO</span>
                         </button>
@@ -827,15 +827,15 @@ function render() {
 
             html = `
                 <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-white tracking-tight">Análisis Predictivo</h2>
-                    <p class="text-slate-400 font-medium">Histórico del día: <span class="capitalize text-blue-600 font-bold">${dayNames[currentDay]}</span></p>
+                    <h2 class="text-2xl font-bold text-slate-800 dark:text-white tracking-tight">Análisis Predictivo</h2>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Histórico del día: <span class="capitalize text-blue-600 font-bold">${dayNames[currentDay]}</span></p>
                 </div>
 
                 <!-- Day Selector -->
                 <div class="flex justify-between gap-1 mb-8 overflow-x-auto pb-2 scrollbar-hide">
                     ${[1, 2, 3, 4, 5, 6, 0].map(d => `
                         <button onclick="selectAnalysisDay(${d})" class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all
-                            ${currentDay === d ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-800 border border-slate-600 text-slate-400'}">
+                            ${currentDay === d ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-400'}">
                             ${dayShort[d]}
                         </button>
                     `).join('')}
@@ -857,8 +857,8 @@ function render() {
                             <p class="text-lg font-bold italic">No hay datos históricos para el ${dayNames[currentDay]}</p>
                         </div>
                     ` : clientsWithSuggestions.map(client => `
-                        <div class="bg-slate-800 border-2 border-slate-100 rounded-[2rem] p-6 shadow-sm overflow-hidden relative">
-                            <h4 class="font-black text-xl text-slate-100 mb-5 border-b border-slate-50 pb-3">
+                        <div class="bg-white dark:bg-slate-800 border-2 border-slate-100 rounded-[2rem] p-6 shadow-sm overflow-hidden relative">
+                            <h4 class="font-black text-xl text-slate-900 dark:text-slate-100 mb-5 border-b border-slate-50 pb-3">
                                 ${client.toUpperCase()}
                             </h4>
                             <div class="space-y-3">
@@ -866,7 +866,7 @@ function render() {
                                     <div class="flex items-center justify-between bg-emerald-50/30 p-4 rounded-2xl border border-emerald-100/50">
                                         <div class="flex flex-col">
                                             <span class="text-[10px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Sugerencia ${dayNames[currentDay]}</span>
-                                            <span class="font-bold text-slate-200">${s.product}</span>
+                                            <span class="font-bold text-slate-700 dark:text-slate-200">${s.product}</span>
                                         </div>
                                         <div class="text-right">
                                             <span class="text-2xl font-black text-emerald-600 block leading-tight">-${s.reduction}</span>
@@ -895,6 +895,17 @@ function render() {
 
 // Global state modification helpers
 window.state = state;
+
+window.toggleTheme = () => {
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    }
+    render();
+};
 
 // Initial render
 render();

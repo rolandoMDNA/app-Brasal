@@ -2,6 +2,14 @@
 <html lang="es">
 
 <head>
+    <script>
+      ocal storage for theme preference to prevent FOUC
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -23,10 +31,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
-                extend: {
+            extend: {
                     colors: {
-                        ruta1: '#3b82f6', // Azul
+                        2f6', // Azul
                         ruta2: '#10b981', // Verde
                         gestion: '#f59e0b', // Ambar
                         analisis: '#8b5cf6', // Violeta
@@ -35,13 +44,12 @@
                         'touch': '60px',
                     }
                 }
-            }
-        }
+           }
     </script>
     <style type="text/tailwindcss">
         @layer base {
             body {
-                @apply bg-slate-900 text-white font-sans antialiased select-none touch-manipulation;
+                @apply bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans antialiased select-none touch-manipulation;
             }
             button {
                 @apply active:scale-95 transition-transform;
@@ -55,7 +63,7 @@
                 @apply p-6 rounded-2xl shadow-md flex flex-col items-center justify-center gap-4 text-white text-center h-40;
             }
             .glass {
-                @apply bg-slate-800/80 backdrop-blur-md border border-slate-700;
+                @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-white/20 dark:border-slate-700;
             }
         }
         /* Prevents browser-native zoom on input focus for iOS */
@@ -82,7 +90,7 @@
     <div id="toast-container"></div>
     <!-- Main Container -->
     <main id="app"
-        class="w-full max-w-md bg-slate-800 shadow-xl min-h-screen flex flex-col relative overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+        class="w-full max-w-md bg-white dark:bg-slate-800 shadow-xl min-h-screen flex flex-col relative overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         <!-- Global Navigation Fixed -->
         <div id="nav-container"
             class="sticky top-0 z-40 transition-all duration-300 transform -translate-y-full opacity-0">

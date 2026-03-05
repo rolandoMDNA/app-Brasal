@@ -18,11 +18,11 @@ export const Icons = {
 
 export const NavBar = () => `
     <nav class="glass flex items-center justify-between px-4 py-3 shadow-sm border-b border-slate-100">
-        <button onclick="goBack()" class="p-3 -ml-2 rounded-full hover:bg-slate-100 text-slate-300 flex items-center gap-1 font-medium">
+        <button onclick="goBack()" class="p-3 -ml-2 rounded-full hover:bg-slate-100 text-slate-600 dark:text-slate-300 flex items-center gap-1 font-medium">
             ${Icons.Back}
             <span class="text-sm">Atrás</span>
         </button>
-        <button onclick="navigate('home')" class="p-3 -mr-2 rounded-full hover:bg-slate-100 text-slate-300 flex items-center gap-2 font-medium">
+        <button onclick="navigate('home')" class="p-3 -mr-2 rounded-full hover:bg-slate-100 text-slate-600 dark:text-slate-300 flex items-center gap-2 font-medium">
             <span class="text-sm">Inicio</span>
             ${Icons.Home}
         </button>
@@ -52,7 +52,7 @@ export const Dashboard = () => `
 
         <button onclick="navigate('admin')" class="card-touch bg-gestion">
             ${Icons.Gestion}
-            <span class="font-bold text-xl uppercase">Gestión</span>
+            <span class="font-bold text-xl uppercase">Configuración</span>
         </button>
         <button onclick="navigate('analysis')" class="card-touch bg-analisis">
             ${Icons.Analisis}
@@ -79,15 +79,15 @@ export const OrdersHistory = (groupedOrders) => {
                             </h4>
                             <div class="space-y-3">
                                 ${Object.keys(dates[date]).map(clientName => `
-                                    <div class="bg-slate-800 p-5 rounded-2xl border border-slate-600 shadow-sm">
+                                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 shadow-sm">
                                         <div class="mb-3 border-b border-slate-50 pb-2">
-                                            <p class="font-bold text-white text-lg">${clientName}</p>
+                                            <p class="font-bold text-slate-800 dark:text-white text-lg">${clientName}</p>
                                         </div>
                                         <div class="space-y-2">
                                             ${dates[date][clientName].map(item => `
-                                                <div class="flex justify-between items-center bg-slate-900 px-3 py-2 rounded-lg">
-                                                    <span class="text-sm font-medium text-slate-300">${item.product}</span>
-                                                    <span class="font-bold text-white">${item.value} uds</span>
+                                                <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-900 px-3 py-2 rounded-lg">
+                                                    <span class="text-sm font-medium text-slate-600 dark:text-slate-300">${item.product}</span>
+                                                    <span class="font-bold text-slate-800 dark:text-white">${item.value} uds</span>
                                                 </div>
                                             `).join('')}
                                         </div>
@@ -103,8 +103,8 @@ export const OrdersHistory = (groupedOrders) => {
 
     return `
         <div class="mb-6">
-            <h2 class="text-2xl font-bold text-white">Pedidos Registrados</h2>
-            <p class="text-slate-400">Agrupados por cliente y fecha de entrega</p>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Pedidos Registrados</h2>
+            <p class="text-slate-500 dark:text-slate-400">Agrupados por cliente y fecha de entrega</p>
         </div>
         <div class="pb-24">
             ${renderRouteSection('Ruta 1 (Rubén)', groupedOrders[1] || {})}
@@ -118,8 +118,8 @@ export const DailyReports = (history) => {
 
     return `
         <div class="mb-6">
-            <h2 class="text-2xl font-bold text-white">Informes Diarios</h2>
-            <p class="text-slate-400">Historial por fechas y exportación</p>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Informes Diarios</h2>
+            <p class="text-slate-500 dark:text-slate-400">Historial por fechas y exportación</p>
         </div>
         
         <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl mb-8 flex flex-col gap-4">
@@ -146,9 +146,9 @@ export const DailyReports = (history) => {
                 if (totals.returns === 0 && totals.payments === 0) return '';
 
                 return `
-                    <button onclick="navigate('report-detail', { date: '${date}' })" class="w-full bg-slate-800 border border-slate-600 p-5 rounded-2xl shadow-sm text-left active:bg-slate-900">
+                    <button onclick="navigate('report-detail', { date: '${date}' })" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 p-5 rounded-2xl shadow-sm text-left active:bg-slate-50 dark:bg-slate-900">
                         <div class="flex justify-between items-center mb-3">
-                            <span class="font-bold text-white text-lg">${date.split('-').reverse().join('/')}</span>
+                            <span class="font-bold text-slate-800 dark:text-white text-lg">${date.split('-').reverse().join('/')}</span>
                             <i data-lucide="chevron-right" class="w-5 h-5 text-slate-300"></i>
                         </div>
                         <div class="flex gap-4 text-xs font-bold uppercase">
@@ -164,8 +164,8 @@ export const DailyReports = (history) => {
 
 export const RouteMenu = (route) => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Ruta: ${route.name}</h2>
-        <p class="text-slate-400">Selecciona una acción</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Ruta: ${route.name}</h2>
+        <p class="text-slate-500 dark:text-slate-400">Selecciona una acción</p>
     </div>
     <div class="flex flex-col gap-4">
         <button onclick="navigate('clients', {routeId: ${route.id}, type: 'returns'})" class="btn-touch bg-blue-100 text-blue-700 border-2 border-blue-200">
@@ -185,8 +185,8 @@ export const RouteMenu = (route) => `
 
 export const ClientList = (clients, typeLabel, routeName, originalType, routeId) => `
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-white capitalize">${typeLabel}</h2>
-        <p class="text-slate-400">Cliente en Ruta ${routeName}</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white capitalize">${typeLabel}</h2>
+        <p class="text-slate-500 dark:text-slate-400">Cliente en Ruta ${routeName}</p>
         <div class="mt-3 bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex items-start gap-3">
             <i data-lucide="mouse-pointer-click" class="w-5 h-5 text-blue-500 shrink-0 mt-0.5"></i>
             <p class="text-xs text-blue-800 font-medium leading-relaxed">
@@ -197,12 +197,12 @@ export const ClientList = (clients, typeLabel, routeName, originalType, routeId)
     </div>
     <div class="grid grid-cols-1 gap-2 pb-10" id="client-list-container">
         ${clients.map(client => `
-            <div data-client="${client}" class="bg-slate-800 border border-slate-600 rounded-2xl shadow-sm text-left active:bg-slate-900 transition-colors flex items-center justify-between overflow-hidden">
+            <div data-client="${client}" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm text-left active:bg-slate-50 dark:bg-slate-900 transition-colors flex items-center justify-between overflow-hidden">
                 <div class="flex items-center gap-3 p-4 flex-1" onclick="selectClient('${client}', '${originalType}', ${routeId})">
                     <i data-lucide="grip-vertical" class="w-5 h-5 text-slate-300 shrink-0 cursor-grab touch-none opacity-50"></i>
-                    <span class="text-lg font-bold text-slate-200 truncate select-none">${client}</span>
+                    <span class="text-lg font-bold text-slate-700 dark:text-slate-200 truncate select-none">${client}</span>
                 </div>
-                <button onclick="selectClient('${client}', '${originalType}', ${routeId})" class="p-4 bg-slate-900 border-l border-slate-100 hover:bg-slate-100 transition-colors h-full">
+                <button onclick="selectClient('${client}', '${originalType}', ${routeId})" class="p-4 bg-slate-50 dark:bg-slate-900 border-l border-slate-100 hover:bg-slate-100 transition-colors h-full">
                     <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
                 </button>
             </div>
@@ -213,18 +213,18 @@ export const ClientList = (clients, typeLabel, routeName, originalType, routeId)
 export const Numpad = (title, unit = '', isDecimal = false, type = 'orders') => `
     <div class="flex flex-col h-full">
         <div class="text-center mb-6">
-            <h2 class="text-2xl font-bold text-white">${title}</h2>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">${title}</h2>
             <div class="mt-4 p-6 bg-slate-100 rounded-2xl">
                 <span id="numpad-display" class="text-5xl font-mono font-bold tracking-tight">0</span>
-                <span class="text-2xl text-slate-400 ml-2">${unit}</span>
+                <span class="text-2xl text-slate-500 dark:text-slate-400 ml-2">${unit}</span>
             </div>
         </div>
         
         <div class="grid grid-cols-3 gap-3 flex-1 pb-10">
-            ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button onclick="numpadPress('${n}')" class="h-20 text-3xl font-bold bg-slate-800 border border-slate-600 rounded-2xl shadow-sm active:bg-slate-900">${n}</button>`).join('')}
-            ${type === 'payments' ? `<button onclick="numpadPress('.')" class="h-20 text-3xl font-bold bg-slate-800 border border-slate-600 rounded-2xl shadow-sm active:bg-slate-900">.</button>`
+            ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button onclick="numpadPress('${n}')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">${n}</button>`).join('')}
+            ${type === 'payments' ? `<button onclick="numpadPress('.')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">.</button>`
         : `<button onclick="numpadPress('.5')" class="h-20 text-2xl font-bold bg-blue-50 text-blue-600 border border-blue-200 rounded-2xl shadow-sm active:bg-blue-100">+ &frac12;</button>`}
-            <button onclick="numpadPress('0')" class="h-20 text-3xl font-bold bg-slate-800 border border-slate-600 rounded-2xl shadow-sm active:bg-slate-900">0</button>
+            <button onclick="numpadPress('0')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">0</button>
             <button onclick="numpadPress('DEL')" class="h-20 text-xl font-bold bg-red-50 text-red-500 border border-red-100 rounded-2xl shadow-sm active:bg-red-100">BORRAR</button>
         </div>
         
@@ -236,35 +236,43 @@ export const Numpad = (title, unit = '', isDecimal = false, type = 'orders') => 
 `;
 // --- GESTIÓN / ADMIN ---
 
-export const AdminMenu = () => `
+export const AdminMenu = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    return `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white tracking-tight">Menú de Gestión</h2>
-        <p class="text-slate-400 font-medium">Administración de clientes y rutas</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white tracking-tight">Configuración</h2>
+        <p class="text-slate-500 dark:text-slate-400 font-medium">Administración general y tema</p>
     </div>
     <div class="grid grid-cols-1 gap-4">
-        <button onclick="navigate('add-client-name')" class="btn-touch bg-slate-800 border-2 border-slate-600 text-white shadow-sm">
+        <button onclick="toggleTheme()" class="btn-touch bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-800 shadow-sm border-2 border-slate-800 dark:border-slate-100 mb-2">
+            ${isDark ? '<i data-lucide="sun" class="w-6 h-6"></i>' : '<i data-lucide="moon" class="w-6 h-6"></i>'}
+            <span class="font-bold">Tema ${isDark ? 'Claro' : 'Oscuro'}</span>
+        </button>
+        <hr class="border-slate-200 dark:border-slate-600 mb-2">
+        <button onclick="navigate('add-client-name')" class="btn-touch bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white shadow-sm">
             <i data-lucide="user-plus" class="w-6 h-6 text-blue-500"></i>
             <span class="font-bold">Añadir Nuevo Cliente</span>
         </button>
-        <button onclick="navigate('del-client-route')" class="btn-touch bg-slate-800 border-2 border-slate-600 text-red-500 shadow-sm">
+        <button onclick="navigate('del-client-route')" class="btn-touch bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 text-red-500 shadow-sm">
             <i data-lucide="user-minus" class="w-6 h-6 text-red-500"></i>
             <span class="font-bold">Eliminar Cliente Existente</span>
         </button>
-        <button onclick="navigate('past-returns-date')" class="btn-touch bg-slate-800 border-2 border-teal-200 text-teal-700 shadow-sm mt-4">
+        <button onclick="navigate('past-returns-date')" class="btn-touch bg-white dark:bg-slate-800 border-2 border-teal-200 text-teal-700 shadow-sm mt-2">
             <i data-lucide="calendar-clock" class="w-6 h-6 text-teal-600"></i>
             <span class="font-bold">Añadir Reg. Pasados</span>
         </button>
     </div>
 `;
+}
 
 export const PastReturnsDate = () => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Fecha Pasada</h2>
-        <p class="text-slate-400">Selecciona el día que quieres registrar (ej: devoluciones de ayer)</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Fecha Pasada</h2>
+        <p class="text-slate-500 dark:text-slate-400">Selecciona el día que quieres registrar (ej: devoluciones de ayer)</p>
     </div>
     <div class="space-y-6">
         <input type="date" id="past-returns-date-input" 
-               class="w-full h-16 px-6 text-xl border-2 border-slate-600 rounded-2xl focus:border-teal-500 outline-none">
+               class="w-full h-16 px-6 text-xl border-2 border-slate-200 dark:border-slate-600 rounded-2xl focus:border-teal-500 outline-none">
         
         <button onclick="savePastReturnsDate()" class="btn-touch bg-teal-700 text-white shadow-lg">
             ${Icons.Check}
@@ -275,8 +283,8 @@ export const PastReturnsDate = () => `
 
 export const PastReturnsRoute = (customDate) => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Asignar Ruta</h2>
-        <p class="text-slate-400">¿Para qué ruta registrarás datos el ${customDate.split('-').reverse().join('/')}?</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Asignar Ruta</h2>
+        <p class="text-slate-500 dark:text-slate-400">¿Para qué ruta registrarás datos el ${customDate.split('-').reverse().join('/')}?</p>
     </div>
     <div class="grid grid-cols-1 gap-4">
         <button onclick="navigate('past-records-type', { routeId: 1, customDate: '${customDate}' })" class="btn-touch bg-ruta1 text-white">
@@ -292,8 +300,8 @@ export const PastReturnsRoute = (customDate) => `
 
 export const PastRecordsType = (routeId, customDate) => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Tipo de Registro</h2>
-        <p class="text-slate-400">¿Qué deseas registrar para el ${customDate.split('-').reverse().join('/')}?</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Tipo de Registro</h2>
+        <p class="text-slate-500 dark:text-slate-400">¿Qué deseas registrar para el ${customDate.split('-').reverse().join('/')}?</p>
     </div>
     <div class="grid grid-cols-1 gap-4">
         <button onclick="navigate('clients', { routeId: ${routeId}, type: 'returns', customDate: '${customDate}' })" class="btn-touch bg-blue-100 text-blue-700 border-2 border-blue-200">
@@ -309,12 +317,12 @@ export const PastRecordsType = (routeId, customDate) => `
 
 export const AddClientName = () => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Nombre del Cliente</h2>
-        <p class="text-slate-400">Ingresa el nombre comercial</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Nombre del Cliente</h2>
+        <p class="text-slate-500 dark:text-slate-400">Ingresa el nombre comercial</p>
     </div>
     <div class="space-y-6">
         <input type="text" id="new-client-name" placeholder="Ej: Panadería El Sol" 
-               class="w-full h-16 px-6 text-xl border-2 border-slate-600 rounded-2xl focus:border-blue-500 outline-none">
+               class="w-full h-16 px-6 text-xl border-2 border-slate-200 dark:border-slate-600 rounded-2xl focus:border-blue-500 outline-none">
         
         <button onclick="saveTempName()" class="btn-touch bg-slate-900 text-white shadow-lg">
             ${Icons.Check}
@@ -325,8 +333,8 @@ export const AddClientName = () => `
 
 export const AddClientRoute = () => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Asignar Ruta</h2>
-        <p class="text-slate-400">¿A qué zona pertenece este cliente?</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Asignar Ruta</h2>
+        <p class="text-slate-500 dark:text-slate-400">¿A qué zona pertenece este cliente?</p>
     </div>
     <div class="grid grid-cols-1 gap-4">
         <button onclick="saveTempRoute(1)" class="btn-touch bg-ruta1 text-white">
@@ -342,19 +350,19 @@ export const AddClientRoute = () => `
 
 export const AddClientLists = () => `
     <div class="mb-8 text-center">
-        <h2 class="text-2xl font-bold text-white">Listas del Cliente</h2>
-        <p class="text-slate-400">¿En qué apartados debe aparecer?</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Listas del Cliente</h2>
+        <p class="text-slate-500 dark:text-slate-400">¿En qué apartados debe aparecer?</p>
     </div>
     <div class="grid grid-cols-1 gap-3">
-        <button onclick="finalizeNewClient('pedidos')" class="btn-touch bg-slate-800 border border-slate-600 text-slate-200">
+        <button onclick="finalizeNewClient('pedidos')" class="btn-touch bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">
             ${Icons.Orders}
             <span>LISTA DE PEDIDOS</span>
         </button>
-        <button onclick="finalizeNewClient('devoluciones')" class="btn-touch bg-slate-800 border border-slate-600 text-slate-200">
+        <button onclick="finalizeNewClient('devoluciones')" class="btn-touch bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">
             ${Icons.Returns}
             <span>LISTA DE DEVOLUCIONES</span>
         </button>
-        <button onclick="finalizeNewClient('cobros')" class="btn-touch bg-slate-800 border border-slate-600 text-slate-200">
+        <button onclick="finalizeNewClient('cobros')" class="btn-touch bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">
             ${Icons.Payments}
             <span>LISTA DE COBROS</span>
         </button>
@@ -382,15 +390,15 @@ export const ReportDetail = (date, groupedEntries) => {
 
     return `
         <div class="mb-6">
-            <h2 class="text-2xl font-bold text-white">Informe: ${date.split('-').reverse().join('/')}</h2>
-            <p class="text-slate-400">Registros agrupados por cliente</p>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Informe: ${date.split('-').reverse().join('/')}</h2>
+            <p class="text-slate-500 dark:text-slate-400">Registros agrupados por cliente</p>
         </div>
 
         <div class="space-y-6 pb-24">
             ${clientNames.length === 0 ? '<p class="text-center py-10 text-slate-400 italic">No hay registros administrativos para este día.</p>' :
             clientNames.map(client => `
-                <div class="bg-slate-800 border-2 border-slate-100 rounded-3xl p-5 shadow-sm">
-                    <h4 class="font-bold text-slate-100 text-lg mb-4 border-b border-slate-50 pb-2">${client}</h4>
+                <div class="bg-white dark:bg-slate-800 border-2 border-slate-100 rounded-3xl p-5 shadow-sm">
+                    <h4 class="font-bold text-slate-900 dark:text-slate-100 text-lg mb-4 border-b border-slate-50 pb-2">${client}</h4>
                     <div class="space-y-3">
                         ${groupedEntries[client].map(entry => `
                             <div class="flex justify-between items-center">
@@ -398,10 +406,10 @@ export const ReportDetail = (date, groupedEntries) => {
                                     <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded ${typeColors[entry.type]} mb-1 inline-block">
                                         ${typeLabels[entry.type]}
                                     </span>
-                                    <p class="text-xs font-bold text-slate-400">${entry.product || (entry.type === 'payments' ? 'Cobro en efectivo' : '')}</p>
+                                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400">${entry.product || (entry.type === 'payments' ? 'Cobro en efectivo' : '')}</p>
                                 </div>
                                 <div class="text-right flex items-center gap-3">
-                                    <p class="font-black text-white">${entry.value}${entry.type === 'payments' ? '€' : ' uds'}</p>
+                                    <p class="font-black text-slate-800 dark:text-white">${entry.value}${entry.type === 'payments' ? '€' : ' uds'}</p>
                                     <div class="flex gap-1">
                                         <button onclick="editEntry(${entry.id})" class="p-2 bg-slate-100 text-slate-400 rounded-lg">
                                             <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
@@ -418,7 +426,7 @@ export const ReportDetail = (date, groupedEntries) => {
             `).join('')}
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 p-4 bg-slate-800/80 backdrop-blur-md border-t border-slate-100">
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100">
             <div class="max-w-md mx-auto flex gap-3">
                 <button onclick="exportData('pdf', 'TODO', '${date}')" class="flex-1 btn-touch bg-blue-600 text-white shadow-lg">
                     <i data-lucide="file-text" class="w-5 h-5"></i>
@@ -431,8 +439,8 @@ export const ReportDetail = (date, groupedEntries) => {
 
 export const DeleteClientRoute = () => `
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-white">Eliminar Cliente</h2>
-        <p class="text-slate-400">¿De qué ruta deseas eliminar?</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Eliminar Cliente</h2>
+        <p class="text-slate-500 dark:text-slate-400">¿De qué ruta deseas eliminar?</p>
     </div>
     <div class="grid grid-cols-1 gap-4">
         <button onclick="navigate('del-client-selection', {routeId: 1})" class="btn-touch bg-ruta1 text-white">
@@ -448,14 +456,14 @@ export const DeleteClientRoute = () => `
 
 export const DeleteClientSelection = (routeId, clients) => `
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-white">Seleccionar Cliente</h2>
-        <p class="text-slate-400">Ruta ${routeId === 1 ? 'Rubén' : 'José'}</p>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Seleccionar Cliente</h2>
+        <p class="text-slate-500 dark:text-slate-400">Ruta ${routeId === 1 ? 'Rubén' : 'José'}</p>
     </div>
     <div class="grid grid-cols-1 gap-2 pb-10">
         ${clients.map(client => `
             <button onclick="finalizeDeleteClient(${routeId}, '${client}')" 
-                    class="flex items-center justify-between p-5 bg-slate-800 border border-red-100 rounded-xl hover:border-red-400 text-left cursor-pointer">
-                <span class="text-lg font-medium text-slate-200">${client}</span>
+                    class="flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-red-100 rounded-xl hover:border-red-400 text-left cursor-pointer">
+                <span class="text-lg font-medium text-slate-700 dark:text-slate-200">${client}</span>
                 <i data-lucide="trash-2" class="w-5 h-5 text-red-300"></i>
             </button>
         `).join('')}

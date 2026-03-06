@@ -214,8 +214,8 @@ export const Numpad = (title, unit = '', isDecimal = false, type = 'orders') => 
     <div class="flex flex-col h-full">
         <div class="text-center mb-6">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white">${title}</h2>
-            <div class="mt-4 p-6 bg-slate-100 rounded-2xl">
-                <span id="numpad-display" class="text-5xl font-mono font-bold tracking-tight">0</span>
+            <div class="mt-4 p-6 bg-slate-100 dark:bg-slate-800 rounded-2xl transition-colors">
+                <span id="numpad-display" class="text-5xl font-mono font-bold tracking-tight text-slate-800 dark:text-white">0</span>
                 <span class="text-2xl text-slate-500 dark:text-slate-400 ml-2">${unit}</span>
             </div>
         </div>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'brasal-1502-v2.2';
+const CACHE_NAME = 'brasal-1502-v2.4';
 const ASSETS = [
     './index.html',
     './app.js',

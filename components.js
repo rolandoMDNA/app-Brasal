@@ -214,21 +214,21 @@ export const Numpad = (title, unit = '', isDecimal = false, type = 'orders') => 
     <div class="flex flex-col h-full">
         <div class="text-center mb-6">
             <h2 class="text-2xl font-bold text-slate-800 dark:text-white">${title}</h2>
-            <div class="mt-4 p-6 bg-slate-100 dark:bg-slate-800 rounded-2xl transition-colors">
-                <span id="numpad-display" class="text-5xl font-mono font-bold tracking-tight text-slate-800 dark:text-white">0</span>
-                <span class="text-2xl text-slate-500 dark:text-slate-400 ml-2">${unit}</span>
+            <div class="mt-4 p-6 bg-slate-100 dark:bg-slate-900/50 rounded-2xl transition-colors">
+                <span id="numpad-display" class="text-5xl font-mono font-bold tracking-tight text-slate-600 dark:text-slate-400">0</span>
+                <span class="text-2xl text-slate-400 dark:text-slate-500 ml-2">${unit}</span>
             </div>
         </div>
         
         <div class="grid grid-cols-3 gap-3 flex-1 pb-10">
-            ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button onclick="numpadPress('${n}')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">${n}</button>`).join('')}
-            ${type === 'payments' ? `<button onclick="numpadPress('.')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">.</button>`
-        : `<button onclick="numpadPress('.5')" class="h-20 text-2xl font-bold bg-blue-50 text-blue-600 border border-blue-200 rounded-2xl shadow-sm active:bg-blue-100">+ &frac12;</button>`}
-            <button onclick="numpadPress('0')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900">0</button>
-            <button onclick="numpadPress('DEL')" class="h-20 text-xl font-bold bg-red-50 text-red-500 border border-red-100 rounded-2xl shadow-sm active:bg-red-100">BORRAR</button>
+            ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button onclick="numpadPress('${n}')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 transition-colors">${n}</button>`).join('')}
+            ${type === 'payments' ? `<button onclick="numpadPress('.')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 transition-colors">.</button>`
+        : `<button onclick="numpadPress('.5')" class="h-20 text-2xl font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 rounded-2xl shadow-sm active:bg-blue-100 transition-colors">+ &frac12;</button>`}
+            <button onclick="numpadPress('0')" class="h-20 text-3xl font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl shadow-sm active:bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 transition-colors">0</button>
+            <button onclick="numpadPress('DEL')" class="h-20 text-xl font-bold bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400 border border-red-100 dark:border-red-800 rounded-2xl shadow-sm active:bg-red-100 transition-colors">BORRAR</button>
         </div>
         
-        <button onclick="numpadConfirm()" class="btn-touch bg-slate-900 text-white shadow-xl shadow-slate-200 mb-6">
+        <button onclick="numpadConfirm()" class="btn-touch bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 shadow-xl shadow-slate-200 dark:shadow-none mb-6 transition-colors">
             ${Icons.Check}
             <span>ACEPTAR</span>
         </button>

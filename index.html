@@ -2,14 +2,12 @@
 <html lang="es">
 
 <head>
-    <script>
-      ocal storage for theme preference to prevent FOUC
+        // local storage for theme preference to prevent FOUC
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -35,7 +33,7 @@
             theme: {
             extend: {
                     colors: {
-                        2f6', // Azul
+                        ruta1: '#3b82f6', // Azul
                         ruta2: '#10b981', // Verde
                         gestion: '#f59e0b', // Ambar
                         analisis: '#8b5cf6', // Violeta
